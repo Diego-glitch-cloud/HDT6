@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -46,5 +47,49 @@ public class Main {
         PokemonManager pokemones = new PokemonManager();
 
         pokemones.loadPokemonData("src/main/resources/pokemon_data.csv");
+
+
+
+
+        
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("\n MENÚ PRINCIPAL ");
+            System.out.println("1. Agregar un Pokémon a tu colección");
+            System.out.println("2. Mostrar datos de un Pokémon");
+            System.out.println("3. Mostrar Pokémon de tu colección ordenados por tipo");
+            System.out.println("4. Mostrar todos los Pokémon ordenados por tipo");
+            System.out.println("5. Buscar Pokémon por habilidad");
+            System.out.println("6. Salir");
+            System.out.print("Ingrese el número de la opción deseada: ");
+
+            int menuOpcion = Integer.parseInt(scanner.nextLine());
+
+            switch (menuOpcion) {
+                case 1:
+                    // Lógica para agregar un Pokémon a la colección
+                    break;
+                case 2:
+                    // Lógica para mostrar datos de un Pokémon
+                    break;
+                case 3:
+                    // Lógica para mostrar Pokémon de la colección ordenados por tipo
+                    break;
+                case 4:
+                    // Lógica para mostrar todos los Pokémon ordenados por tipo
+                    break;
+                case 5:
+                    // Lógica para buscar Pokémon por habilidad
+
+                    break;
+                case 6:
+                    // Salir del programa
+                    exit = true;
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción inválida. Por favor ingrese un número entre 1 y 6");
+            }
+        }
     }
 }

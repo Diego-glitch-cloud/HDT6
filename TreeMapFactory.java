@@ -3,7 +3,7 @@ import java.util.TreeMap;
 
 public class TreeMapFactory implements MapFactory {
     @Override
-    public Map<String, Pokemon> createMap() {
+    public <K, V> Map<K, V> createMap() {
         return new TreeMap<>();
     }
 }

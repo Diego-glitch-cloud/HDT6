@@ -42,5 +42,9 @@ public class Main {
         
         factory = pokemonfactory.getFactory(option);
         Map<String, Pokemon> map = factory.createMap();
+
+        PokemonManager pokemones = new PokemonManager();
+
+        pokemones.loadPokemonData("src/main/resources/pokemon_data.csv");
     }
 }

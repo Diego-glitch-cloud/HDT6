@@ -9,25 +9,14 @@ public class Main {
         boolean validOption = false;
         Scanner scanner = new Scanner(System.in);
         
-        while (!validOption) {
-            System.out.println("\nSelecciona qué implementación de MAP deseas usar");
-            System.out.println("1. HashMap");
-            System.out.println("2. TreeMap");
-            System.out.println("3. LinkedHashMap");
-            System.out.print("Ingrese el número de la implementación que desea utilizar: ");
-
-            try {
-                option = Integer.parseInt(scanner.nextLine());
-
-                if (option >= 1 && option <= 3) {
-                    validOption = true;
-                } else {
-                    System.out.println("Error: Opción inválida. Por favor ingrese un número entre 1 y 3.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Por favor ingrese un número válido.");
-            }
-        }
+        
+        System.out.println("\nSelecciona qué implementación de MAP deseas usar");
+        System.out.println("1. HashMap");
+        System.out.println("2. TreeMap");
+        System.out.println("3. LinkedHashMap");
+        System.out.print("Ingrese el número de la implementación que desea utilizar: ");
+            
+        option = Integer.parseInt(scanner.nextLine());    
 
         switch (option) {
             case 1:
@@ -42,7 +31,7 @@ public class Main {
         }
         
         factory = pokemonfactory.getFactory(option);
-        Map<String, Pokemon> map = factory.createMap();
+        Map<String, Pokemon> pokedex = factory.createMap();
 
         PokemonManager pokemones = new PokemonManager();
 
@@ -51,9 +40,9 @@ public class Main {
 
 
 
-        
-        boolean exit = false;
-        while (!exit) {
+
+        boolean salir = false;
+        while (!salir) {
             System.out.println("\n MENÚ PRINCIPAL ");
             System.out.println("1. Agregar un Pokémon a tu colección");
             System.out.println("2. Mostrar datos de un Pokémon");
@@ -62,6 +51,9 @@ public class Main {
             System.out.println("5. Buscar Pokémon por habilidad");
             System.out.println("6. Salir");
             System.out.print("Ingrese el número de la opción deseada: ");
+
+            int tamanio_csv = pokemones.getPokemonSet().size();
+            System.out.println("Tamaño del csv: " + tamanio_csv); 
 
             int menuOpcion = Integer.parseInt(scanner.nextLine());
 
@@ -84,7 +76,7 @@ public class Main {
                     break;
                 case 6:
                     // Salir del programa
-                    exit = true;
+                    salir = true;
                     System.out.println("Saliendo...");
                     break;
                 default:

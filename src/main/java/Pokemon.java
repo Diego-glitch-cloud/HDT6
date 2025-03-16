@@ -128,6 +128,13 @@ public class Pokemon implements Comparable<Pokemon> {
     // Este método nos va a servir para ordenar los pokemon por type1 en el TreeSet
     @Override
     public int compareTo(Pokemon other) {
-        return this.type1.compareTo(other.type1);
+        // Compara por Type1 para ordenar
+        int typeComparison = this.type1.compareTo(other.type1);
+        if (typeComparison != 0) {
+            return typeComparison;
+        }
+        
+        // si el type1 es igual, revisa el nombre para no considerarlo como duplicado
+        return this.name.compareTo(other.name);
     }
 }

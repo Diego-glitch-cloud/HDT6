@@ -9,7 +9,6 @@ public class Main {
         MapFactory factory = null;
         PokemonFactory pokemonfactory = new PokemonFactory();
         int option = 0;
-        boolean validOption = false;
         Scanner scanner = new Scanner(System.in);
         
         
@@ -55,7 +54,6 @@ public class Main {
             System.out.println("6. Salir");
             System.out.print("Ingrese el número de la opción deseada: ");
 
-
             int menuOpcion = Integer.parseInt(scanner.nextLine());
 
             switch (menuOpcion) {
@@ -64,7 +62,7 @@ public class Main {
 
                     System.out.print("Ingrese el nombre del Pokémon que desea agregar: ");
                     String pokemonName = scanner.nextLine();
-                    
+
                     // Buscar el Pokémon en el conjunto completo
                     Pokemon pokemonT = null;
                     for (Pokemon p : pokemones.getPokemonSet()) {
@@ -73,7 +71,7 @@ public class Main {
                             break;
                         }
                     }
-                    
+
                     if (pokemonT != null) {
                         // Verificar si ya está en la colección del usuario
                         if (pokedex.containsKey(pokemonName)) {
@@ -91,7 +89,7 @@ public class Main {
 
                     System.out.print("Ingrese el nombre del Pokémon: ");
                     String pokemonToShow = scanner.nextLine();
-                    
+
                     Pokemon pokemon = pokedex.get(pokemonToShow.toLowerCase());
                     if (pokemon != null) {
                         System.out.println("\nDatos del Pokémon:");
@@ -106,7 +104,8 @@ public class Main {
                         System.out.println("Generación: " + pokemon.getGeneration());
                         System.out.println("Legendario: " + (pokemon.isLegendaryStatus() ? "Sí" : "No"));
                     } else {
-                        System.out.println("Error: El Pokémon " + pokemonToShow + " no está en tu colección. Primero agrégalo con la opción 1");
+                        System.out.println("Error: El Pokémon " + pokemonToShow
+                                + " no está en tu colección. Primero agrégalo con la opción 1");
                     }
                     break;
                 case 3:
@@ -116,25 +115,54 @@ public class Main {
                     } else {
                         System.out.println("\nTu colección de Pokémon ordenada por tipo:");
                         System.out.println("-------------------------------------");
-                        System.out.printf("%-15s %-10s\n", "Nombre", "Tipo 1"); 
+                        System.out.printf("%-15s %-10s\n", "Nombre", "Tipo 1");
                         System.out.println("-------------------------------------");
                         // Formato de Impresión por Claude https://claude.ai/
-                        
+
                         // Convertir el Map a List para ordenar por tipo (Map en JCF no tiene método sort)
                         List<Pokemon> userPokemon = new ArrayList<>(pokedex.values());
                         userPokemon.sort(Comparator.comparing(Pokemon::getType1));
-                        
+
                         for (Pokemon p : userPokemon) {
                             System.out.printf("%-15s %-10s\n", p.getName(), p.getType1());
                         }
                     }
                     break;
                 case 4:
-                    // Lógica para mostrar todos los Pokémon ordenados por tipo
+                    // Mostrar todos los Pokémon ordenados por tipo
+
+                    System.out.println("\nTodos los Pokémon ordenados por tipo:");
+                    System.out.println("-------------------------------------");
+                    System.out.printf("%-15s %-10s\n", "Nombre", "Tipo 1");
+                    System.out.println("-------------------------------------");
+                    // Formato de Impresión por Claude https://claude.ai/
+
+                    // El TreeSet ya está ordenado por tipo1
+                    for (Pokemon p : pokemones.getPokemonSet()) {
+                        System.out.printf("%-15s %-10s\n",
+                                p.getName(),
+                                p.getType1());
+                    }
                     break;
                 case 5:
-                    // Lógica para buscar Pokémon por habilidad
+                    // Buscar Pokémon por habilidad
+                    System.out.print("Ingrese la habilidad que desea buscar: ");
+                    String ability = scanner.nextLine().toLowerCase();
 
+                    System.out.println("\nPokémon con la habilidad " + ability + ":");
+                    System.out.println("-------------------------------------");
+
+                    boolean foundPokemon = false;
+                    for (Pokemon p : pokemones.getPokemonSet()) {
+                        if (p.getAbilities().toLowerCase().contains(ability)) {
+                            System.out.println(p.getName());
+                            foundPokemon = true;
+                        }
+                    }
+
+                    if (!foundPokemon) {
+                        System.out.println("No se encontraron Pokémon con esa habilidad");
+                    }
                     break;
                 case 6:
                     // Salir del programa
@@ -145,5 +173,6 @@ public class Main {
                     System.out.println("Opción inválida. Por favor ingrese un número entre 1 y 6");
             }
         }
+        scanner.close();
     }
 }

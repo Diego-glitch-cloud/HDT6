@@ -76,7 +76,7 @@ public class Main {
                         if (pokedex.containsKey(pokemonName)) {
                             System.out.println("Este Pokémon ya está en tu colección");
                         } else {
-                            pokedex.put(pokemonName, pokemonT);
+                            pokedex.put(pokemonName.toLowerCase(), pokemonT);
                             System.out.println(pokemonName + " ha sido añadido a tu colección");
                         }
                     } else {
@@ -84,9 +84,27 @@ public class Main {
                     }
                     break;
                 case 2:
-                    // Lógica para mostrar datos de un Pokémon
+                    // Mostrar datos de un Pokémon
 
+                    System.out.print("Ingrese el nombre del Pokémon: ");
+                    String pokemonToShow = scanner.nextLine();
                     
+                    Pokemon pokemon = pokedex.get(pokemonToShow.toLowerCase());
+                    if (pokemon != null) {
+                        System.out.println("\nDatos del Pokémon:");
+                        System.out.println("Nombre: " + pokemon.getName());
+                        System.out.println("Número en la Pokédex: " + pokemon.getPokedexNumber());
+                        System.out.println("Tipo 1: " + pokemon.getType1());
+                        System.out.println("Tipo 2: " + (pokemon.getType2().isEmpty() ? "N/A" : pokemon.getType2()));
+                        System.out.println("Clasificación: " + pokemon.getClassification());
+                        System.out.println("Altura: " + pokemon.getHeight() + " m");
+                        System.out.println("Peso: " + pokemon.getWeight() + " kg");
+                        System.out.println("Habilidades: " + pokemon.getAbilities());
+                        System.out.println("Generación: " + pokemon.getGeneration());
+                        System.out.println("Legendario: " + (pokemon.isLegendaryStatus() ? "Sí" : "No"));
+                    } else {
+                        System.out.println("Error: El Pokémon " + pokemonToShow + " no está en tu colección. Primero agrégalo con la opción 1");
+                    }
                     break;
                 case 3:
                     // Lógica para mostrar Pokémon de la colección ordenados por tipo

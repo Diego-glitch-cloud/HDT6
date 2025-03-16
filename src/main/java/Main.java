@@ -33,6 +33,7 @@ public class Main {
         factory = pokemonfactory.getFactory(option);
         Map<String, Pokemon> pokedex = factory.createMap();
 
+        // Base de datos con todos los pokemon del CSV
         PokemonManager pokemones = new PokemonManager();
 
         pokemones.loadPokemonData("src/main/resources/pokemon_data.csv");
@@ -43,7 +44,6 @@ public class Main {
 
         boolean salir = false;
         while (!salir) {
-            System.out.println("\n MENÚ PRINCIPAL ");
             System.out.println("1. Agregar un Pokémon a tu colección");
             System.out.println("2. Mostrar datos de un Pokémon");
             System.out.println("3. Mostrar Pokémon de tu colección ordenados por tipo");
@@ -52,17 +52,41 @@ public class Main {
             System.out.println("6. Salir");
             System.out.print("Ingrese el número de la opción deseada: ");
 
-            int tamanio_csv = pokemones.getPokemonSet().size();
-            System.out.println("Tamaño del csv: " + tamanio_csv); 
 
             int menuOpcion = Integer.parseInt(scanner.nextLine());
 
             switch (menuOpcion) {
                 case 1:
-                    // Lógica para agregar un Pokémon a la colección
+                    // Agregar un Pokémon a la colección del usuario (pokedex)
+
+                    System.out.print("Ingrese el nombre del Pokémon que desea agregar: ");
+                    String pokemonName = scanner.nextLine();
+                    
+                    // Buscar el Pokémon en el conjunto completo
+                    Pokemon pokemonT = null;
+                    for (Pokemon p : pokemones.getPokemonSet()) {
+                        if (p.getName().toLowerCase().equals(pokemonName.toLowerCase())) {
+                            pokemonT = p;
+                            break;
+                        }
+                    }
+                    
+                    if (pokemonT != null) {
+                        // Verificar si ya está en la colección del usuario
+                        if (pokedex.containsKey(pokemonName)) {
+                            System.out.println("Este Pokémon ya está en tu colección");
+                        } else {
+                            pokedex.put(pokemonName, pokemonT);
+                            System.out.println(pokemonName + " ha sido añadido a tu colección");
+                        }
+                    } else {
+                        System.out.println("Error: El Pokémon " + pokemonName + " no existe en la base de datos");
+                    }
                     break;
                 case 2:
                     // Lógica para mostrar datos de un Pokémon
+
+                    
                     break;
                 case 3:
                     // Lógica para mostrar Pokémon de la colección ordenados por tipo

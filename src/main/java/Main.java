@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -107,7 +110,24 @@ public class Main {
                     }
                     break;
                 case 3:
-                    // Lógica para mostrar Pokémon de la colección ordenados por tipo
+                    // Mostrar Pokémon de la colección del usuario ordenados por tipo
+                    if (pokedex.isEmpty()) {
+                        System.out.println("Tu colección está vacía");
+                    } else {
+                        System.out.println("\nTu colección de Pokémon ordenada por tipo:");
+                        System.out.println("-------------------------------------");
+                        System.out.printf("%-15s %-10s\n", "Nombre", "Tipo 1"); 
+                        System.out.println("-------------------------------------");
+                        // Formato de Impresión por Claude https://claude.ai/
+                        
+                        // Convertir el Map a List para ordenar por tipo (Map en JCF no tiene método sort)
+                        List<Pokemon> userPokemon = new ArrayList<>(pokedex.values());
+                        userPokemon.sort(Comparator.comparing(Pokemon::getType1));
+                        
+                        for (Pokemon p : userPokemon) {
+                            System.out.printf("%-15s %-10s\n", p.getName(), p.getType1());
+                        }
+                    }
                     break;
                 case 4:
                     // Lógica para mostrar todos los Pokémon ordenados por tipo

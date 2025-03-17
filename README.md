@@ -40,3 +40,7 @@ Análisis de la complejidad para mostrar todos los pokémon ordenados por tipo1 
 
 ## Implementación más eficiente
 Usar directamente el TreeSet en PokemonManager es más eficiente (**O(n)**) ya que los elementos ya están ordenados por type1 gracias al método `compareTo` implementado en la clase Pokemon.
+
+
+## LINK DE GITHUB 
+# https://github.com/Diego-glitch-cloud/HDT6.git

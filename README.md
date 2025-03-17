@@ -9,3 +9,7 @@ El motivo por el cual escogí almacenarlos en un TreeSet es por la característi
 
 El TreeSet se basa en la estructura Set, que evita elementos repetidos, e internamente cuenta con una estructura de arbol rojo-negro, que mantiene las operaciones a un tiempo logarítmico.
 ![image](https://github.com/user-attachments/assets/38d0415c-e595-4712-a1c7-d4303481061e)
+
+Test Unitarios Superados:
+
+![image](https://github.com/user-attachments/assets/02a0ca90-0c87-4864-94f3-78e7947f1df8)

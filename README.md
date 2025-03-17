@@ -13,3 +13,26 @@ El TreeSet se basa en la estructura Set, que evita elementos repetidos, e intern
 Test Unitarios Superados:
 
 ![image](https://github.com/user-attachments/assets/02a0ca90-0c87-4864-94f3-78e7947f1df8)
+
+Análisis de complejidades dependiendo del Map utilizado (case 4, mostrar todos los pokemon ordenados por type1)
+
+HashMap
+Complejidad: O(n log n)
+•	Acceder a los elementos: O(n)
+•	Convertir a lista para ordenar: O(n)
+•	Ordenar por tipo: O(n log n) - usa comparator
+[No mantiene orden natural, requiere ordenamiento explícito]
+TreeMap
+Complejidad: O(n)
+•	Ya mantiene elementos ordenados por clave (nombre)
+•	Recorrer todos los elementos: O(n)
+•	Ordenar por tipo1 requiere conversión a lista: O(n log n)
+•	No ordena directamente por tipo1 sino por clave
+LinkedHashMap
+Complejidad: O(n log n)
+•	Mantiene orden de inserción, no ordenamiento natural
+•	Similar a HashMap, requiere convertir a lista
+•	Ordenamiento: O(n log n)
+Mejor implementación para ordenar por tipo1
+Usar directamente el TreeSet en PokemonManager es más eficiente (O(n)) ya que los elementos ya están ordenados por tipo1 gracias al método compareTo implementado en la clase Pokemon.
+
